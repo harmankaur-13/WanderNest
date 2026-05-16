@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Wandernest — A home for wanderers. Plan trips, eat consciously, and speak like a local." />
+  <title>Wandernest — A home for wanderers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Landing -->
+  <section id="landing" class="landing view-active">
+    <header class="landing-header">
+      <button type="button" id="theme-toggle-landing" class="icon-btn theme-toggle" aria-label="Toggle dark mode">
+        <span class="theme-icon sun" aria-hidden="true">☀</span>
+        <span class="theme-icon moon" aria-hidden="true">☾</span>
+      </button>
+    </header>
+    <div class="landing-hero">
+      <p class="eyebrow">A home for wanderers</p>
+      <h1 class="brand-title">Wandernest</h1>
+      <p class="tagline">Plan journeys with heart — conscious eating, local lingo, and day-by-day nests built for explorers like you.</p>
+    </div>
+    <div class="auth-card card">
+      <h2>Welcome back, wanderer</h2>
+      <p class="auth-sub">No server needed — your nest lives in your browser.</p>
+      <form id="auth-form" novalidate>
+        <div class="field">
+          <label for="auth-name">Your name</label>
+          <input type="text" id="auth-name" name="name" placeholder="Alex Wanderer" required autocomplete="name" />
+          <span class="field-error" data-for="auth-name"></span>
+        </div>
+        <div class="field">
+          <label for="auth-email">Email</label>
+          <input type="email" id="auth-email" name="email" placeholder="you@trailmail.com" required autocomplete="email" />
+          <span class="field-error" data-for="auth-email"></span>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Enter My Nest</button>
+      </form>
+      <p class="auth-hint">Mock sign-in — session saved locally on this device.</p>
+    </div>
+  </section>
+
+  <!-- Main App -->
+  <div id="app" class="app hidden" aria-hidden="true">
+    <header class="top-navbar" aria-label="Main navigation">
+      <div class="navbar-brand">
+        <span class="brand-mark" aria-hidden="true">⛰</span>
+        <div>
+          <strong>Wandernest</strong>
+          <small id="sidebar-greeting">Explorer</small>
+        </div>
+      </div>
+      <nav class="nav-tabs" role="tablist">
+        <button type="button" class="nav-tab active" data-tab="dashboard" role="tab" aria-selected="true" aria-controls="panel-dashboard">
+          <span class="nav-icon" aria-hidden="true">◎</span> Dashboard
+        </button>
+        <button type="button" class="nav-tab" data-tab="itinerary" role="tab" aria-selected="false" aria-controls="panel-itinerary">
+          <span class="nav-icon" aria-hidden="true">◇</span> Live Itinerary
+        </button>
+        <button type="button" class="nav-tab" data-tab="eater" role="tab" aria-selected="false" aria-controls="panel-eater">
+          <span class="nav-icon" aria-hidden="true">◈</span> Conscious Eater
+        </button>
+        <button type="button" class="nav-tab" data-tab="lingo" role="tab" aria-selected="false" aria-controls="panel-lingo">
+          <span class="nav-icon" aria-hidden="true">◉</span> Lingo Nest
+        </button>
+        <button type="button" class="nav-tab" data-tab="profile" role="tab" aria-selected="false" aria-controls="panel-profile">
+          <span class="nav-icon" aria-hidden="true">◐</span> My Nest
+        </button>
+      </nav>
+      <div class="navbar-actions">
+        <button type="button" id="theme-toggle-app" class="icon-btn theme-toggle" aria-label="Toggle dark mode">
+          <span class="theme-icon sun" aria-hidden="true">☀</span>
+          <span class="theme-icon moon" aria-hidden="true">☾</span>
+        </button>
+        <button type="button" id="logout-btn" class="btn btn-ghost btn-sm">Sign out</button>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <!-- Dashboard -->
+      <section id="panel-dashboard" class="tab-panel view-active" role="tabpanel" data-panel="dashboard">
+        <header class="panel-header">
+          <h1 id="dashboard-greeting">Good day, wanderer</h1>
+          <p class="panel-lead">Shape your next adventure — we'll build a nest itinerary from your trail notes.</p>
+        </header>
+
+        <div class="grid-two">
+          <article class="card trip-form-card">
+            <h2>Plan a new nest</h2>
+            <form id="trip-form" novalidate>
+              <div class="field">
+                <label for="destination">Destination</label>
+                <input type="text" id="destination" name="destination" placeholder="Tokyo, Paris, New York…" required />
+                <span class="field-error" data-for="destination"></span>
+              </div>
+              <div class="field">
+                <label for="duration">Trip duration (days)</label>
+                <input type="number" id="duration" name="duration" min="1" max="30" placeholder="5" required />
+                <span class="field-error" data-for="duration"></span>
+              </div>
+              <button type="submit" class="btn btn-primary">Generate My Nest Itinerary</button>
+            </form>
+          </article>
+
+          <article class="card">
+            <h2>Your saved nests</h2>
+            <div id="saved-trips-list" class="saved-trips-list">
+              <p class="empty-state">No trips yet — generate your first nest above.</p>
+            </div>
+          </article>
+        </div>
+
+        <article id="current-trip-summary" class="card trip-summary hidden">
+          <h2>Active trip</h2>
+          <div id="current-trip-content"></div>
+        </article>
+      </section>
+
+      <!-- Live Itinerary -->
+      <section id="panel-itinerary" class="tab-panel" role="tabpanel" data-panel="itinerary" hidden>
+        <header class="panel-header">
+          <h1>Live Itinerary</h1>
+          <p class="panel-lead" id="itinerary-subtitle">Day-by-day trail through your destination.</p>
+        </header>
+        <div id="itinerary-timeline" class="timeline">
+          <p class="empty-state">Set a destination and duration on the Dashboard, then generate your nest.</p>
+        </div>
+      </section>
+
+      <!-- Conscious Eater -->
+      <section id="panel-eater" class="tab-panel" role="tabpanel" data-panel="eater" hidden>
+        <header class="panel-header">
+          <h1>The Conscious Eater</h1>
+          <p class="panel-lead" id="eater-subtitle">Local flavors aligned with how you eat.</p>
+        </header>
+
+        <div class="filter-bar" role="group" aria-label="Dietary filter">
+          <button type="button" class="filter-chip active" data-diet-filter="all">All</button>
+          <button type="button" class="filter-chip" data-diet-filter="vegetarian">Vegetarian</button>
+          <button type="button" class="filter-chip" data-diet-filter="vegan">Vegan</button>
+          <button type="button" class="filter-chip" data-diet-filter="allergies">Food Allergies</button>
+        </div>
+
+        <article class="card sos-card" id="dietary-sos">
+          <h2>Dietary SOS</h2>
+          <p class="sos-intro">Show this card to chefs — phrases in the local language for your restrictions.</p>
+          <div id="sos-phrases" class="sos-phrases"></div>
+        </article>
+
+        <div id="culinary-grid" class="culinary-grid">
+          <p class="empty-state">Choose a destination on the Dashboard to see culinary picks.</p>
+        </div>
+      </section>
+
+      <!-- Lingo Nest -->
+      <section id="panel-lingo" class="tab-panel" role="tabpanel" data-panel="lingo" hidden>
+        <header class="panel-header">
+          <h1>Lingo Nest</h1>
+          <p class="panel-lead" id="lingo-subtitle">Essential 15 survival phrases for your destination.</p>
+        </header>
+        <div id="lingo-categories" class="lingo-categories">
+          <p class="empty-state">Set a destination to unlock your language toolkit.</p>
+        </div>
+      </section>
+
+      <!-- Profile & About -->
+      <section id="panel-profile" class="tab-panel" role="tabpanel" data-panel="profile" hidden>
+        <header class="panel-header">
+          <h1>My Nest</h1>
+          <p class="panel-lead">Your profile, preferences, and the story behind Wandernest.</p>
+        </header>
+
+        <div class="grid-two">
+          <article class="card about-card">
+            <h2>About Wandernest</h2>
+            <p>Wandernest is a sanctuary for curious travelers who want more than a checklist. We believe every journey should honor your body, your values, and the communities you visit.</p>
+            <p>From conscious eating cheat-sheets to day-by-day trails and survival phrases, your nest grows with you — stored privately on your device, ready whenever wanderlust calls.</p>
+            <ul class="about-values">
+              <li>Travel lightly on servers — your data stays home</li>
+              <li>Eat with intention and communicate with respect</li>
+              <li>Explore deeply, one day at a time</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h2>Your wanderer profile</h2>
+            <form id="profile-form" novalidate>
+              <div class="field">
+                <label for="profile-name">Name</label>
+                <input type="text" id="profile-name" name="name" required />
+                <span class="field-error" data-for="profile-name"></span>
+              </div>
+              <div class="field">
+                <label for="profile-country">Home country</label>
+                <input type="text" id="profile-country" name="homeCountry" placeholder="United States" />
+              </div>
+              <div class="field">
+                <label for="profile-diet">Dietary restrictions</label>
+                <select id="profile-diet" name="dietaryRestriction">
+                  <option value="none">None / Omnivore</option>
+                  <option value="vegetarian">Vegetarian</option>
+                  <option value="vegan">Vegan</option>
+                  <option value="allergies">Food allergies</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="profile-health">Health & mobility notes</label>
+                <textarea id="profile-health" name="healthNotes" rows="3" placeholder="e.g. low mobility, need step-free routes"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Save to My Nest</button>
+              <p id="profile-save-msg" class="save-msg hidden" role="status">Profile saved — recommendations updated.</p>
+            </form>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
