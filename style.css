@@ -82,7 +82,10 @@ body {
 }
 
 /* Typography hierarchy */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: var(--font-heading);
   font-weight: 600;
   line-height: 1.25;
@@ -119,7 +122,10 @@ a:hover {
   text-decoration: underline;
 }
 
-button, input, select, textarea {
+button,
+input,
+select,
+textarea {
   font-family: var(--font-body);
   font-size: 0.9375rem;
 }
@@ -138,6 +144,7 @@ button, input, select, textarea {
     opacity: 0;
     transform: translateY(6px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -645,12 +652,10 @@ button, input, select, textarea {
   flex-direction: column;
   justify-content: flex-end;
   padding: var(--space-xl);
-  background: linear-gradient(
-    to top,
-    rgba(15, 76, 92, 0.72) 0%,
-    rgba(15, 76, 92, 0.25) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(to top,
+      rgba(15, 76, 92, 0.72) 0%,
+      rgba(15, 76, 92, 0.25) 50%,
+      transparent 100%);
   pointer-events: none;
 }
 
@@ -695,11 +700,9 @@ button, input, select, textarea {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 60%,
-    rgba(248, 246, 241, 0.15) 100%
-  );
+  background: linear-gradient(to bottom,
+      transparent 60%,
+      rgba(248, 246, 241, 0.15) 100%);
   pointer-events: none;
 }
 
@@ -1153,6 +1156,7 @@ button, input, select, textarea {
 }
 
 @media (max-width: 480px) {
+
   .phrase-grid,
   .culinary-grid,
   .grid-two {

@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Wandernest — A home for wanderers. Plan trips, eat consciously, and speak like a local." />
+  <meta name="description"
+    content="Wandernest — A home for wanderers. Plan trips, eat consciously, and speak like a local." />
   <title>Wandernest — A home for wanderers</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <!-- Landing -->
   <section id="landing" class="landing view-active">
@@ -22,7 +27,8 @@
     <div class="landing-hero">
       <p class="eyebrow">A home for wanderers</p>
       <h1 class="brand-title">Wandernest</h1>
-      <p class="tagline">Plan journeys with heart — conscious eating, local lingo, and day-by-day nests built for explorers like you.</p>
+      <p class="tagline">Plan journeys with heart — conscious eating, local lingo, and day-by-day nests built for
+        explorers like you.</p>
     </div>
     <div class="auth-card card">
       <h2>Welcome back, wanderer</h2>
@@ -35,7 +41,8 @@
         </div>
         <div class="field">
           <label for="auth-email">Email</label>
-          <input type="email" id="auth-email" name="email" placeholder="you@trailmail.com" required autocomplete="email" />
+          <input type="email" id="auth-email" name="email" placeholder="you@trailmail.com" required
+            autocomplete="email" />
           <span class="field-error" data-for="auth-email"></span>
         </div>
         <button type="submit" class="btn btn-primary btn-block">Enter My Nest</button>
@@ -55,19 +62,24 @@
         </div>
       </div>
       <nav class="nav-tabs" role="tablist">
-        <button type="button" class="nav-tab active" data-tab="dashboard" role="tab" aria-selected="true" aria-controls="panel-dashboard">
+        <button type="button" class="nav-tab active" data-tab="dashboard" role="tab" aria-selected="true"
+          aria-controls="panel-dashboard">
           <span class="nav-icon" aria-hidden="true">◎</span> Dashboard
         </button>
-        <button type="button" class="nav-tab" data-tab="itinerary" role="tab" aria-selected="false" aria-controls="panel-itinerary">
+        <button type="button" class="nav-tab" data-tab="itinerary" role="tab" aria-selected="false"
+          aria-controls="panel-itinerary">
           <span class="nav-icon" aria-hidden="true">◇</span> Live Itinerary
         </button>
-        <button type="button" class="nav-tab" data-tab="eater" role="tab" aria-selected="false" aria-controls="panel-eater">
+        <button type="button" class="nav-tab" data-tab="eater" role="tab" aria-selected="false"
+          aria-controls="panel-eater">
           <span class="nav-icon" aria-hidden="true">◈</span> Conscious Eater
         </button>
-        <button type="button" class="nav-tab" data-tab="lingo" role="tab" aria-selected="false" aria-controls="panel-lingo">
+        <button type="button" class="nav-tab" data-tab="lingo" role="tab" aria-selected="false"
+          aria-controls="panel-lingo">
           <span class="nav-icon" aria-hidden="true">◉</span> Lingo Nest
         </button>
-        <button type="button" class="nav-tab" data-tab="profile" role="tab" aria-selected="false" aria-controls="panel-profile">
+        <button type="button" class="nav-tab" data-tab="profile" role="tab" aria-selected="false"
+          aria-controls="panel-profile">
           <span class="nav-icon" aria-hidden="true">◐</span> My Nest
         </button>
       </nav>
@@ -178,8 +190,10 @@
         <div class="grid-two">
           <article class="card about-card">
             <h2>About Wandernest</h2>
-            <p>Wandernest is a sanctuary for curious travelers who want more than a checklist. We believe every journey should honor your body, your values, and the communities you visit.</p>
-            <p>From conscious eating cheat-sheets to day-by-day trails and survival phrases, your nest grows with you — stored privately on your device, ready whenever wanderlust calls.</p>
+            <p>Wandernest is a sanctuary for curious travelers who want more than a checklist. We believe every journey
+              should honor your body, your values, and the communities you visit.</p>
+            <p>From conscious eating cheat-sheets to day-by-day trails and survival phrases, your nest grows with you —
+              stored privately on your device, ready whenever wanderlust calls.</p>
             <ul class="about-values">
               <li>Travel lightly on servers — your data stays home</li>
               <li>Eat with intention and communicate with respect</li>
@@ -210,10 +224,12 @@
               </div>
               <div class="field">
                 <label for="profile-health">Health & mobility notes</label>
-                <textarea id="profile-health" name="healthNotes" rows="3" placeholder="e.g. low mobility, need step-free routes"></textarea>
+                <textarea id="profile-health" name="healthNotes" rows="3"
+                  placeholder="e.g. low mobility, need step-free routes"></textarea>
               </div>
               <button type="submit" class="btn btn-primary">Save to My Nest</button>
-              <p id="profile-save-msg" class="save-msg hidden" role="status">Profile saved — recommendations updated.</p>
+              <p id="profile-save-msg" class="save-msg hidden" role="status">Profile saved — recommendations updated.
+              </p>
             </form>
           </article>
         </div>
@@ -225,4 +241,5 @@
 
   <script src="app.js" defer></script>
 </body>
+
 </html>
