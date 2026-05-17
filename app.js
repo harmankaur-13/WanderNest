@@ -478,13 +478,7 @@ function renderAll() {
   fillProfile();
 }
 
-/* ── Theme + event bindings ── */
-function applyTheme(t) {
-  document.documentElement.setAttribute("data-theme", t);
-  appState.theme = t;
-  saveState();
-}
-
+/* ── Event bindings ── */
 function bindEvents() {
   $.authForm.onsubmit = (e) => {
     e.preventDefault();
@@ -506,12 +500,10 @@ function bindEvents() {
   document.getElementById("logout-btn").onclick = () => { appState.isAuthenticated = false; saveState(); showLanding(); };
   $.navTabs.forEach((b) => b.onclick = () => switchTab(b.dataset.tab));
   $.dietChips.forEach((c) => c.onclick = () => { appState.dietFilter = c.dataset.dietFilter; saveState(); renderEater(); });
-  document.querySelectorAll(".theme-toggle").forEach((b) => b.onclick = () => applyTheme(appState.theme === "dark" ? "light" : "dark"));
 }
 
 /* ── Boot ── */
 function init() {
-  applyTheme(appState.theme);
   bindEvents();
   appState.isAuthenticated ? showApp() : showLanding();
 }
