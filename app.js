@@ -11,6 +11,15 @@ const destinationsDb = {
     country: "Japan",
     language: "Japanese",
     veganHard: true,
+    heroImage: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1200&h=500&fit=crop&q=80",
+    cuisineImages: {
+      "Tsukiji Outer Market": "https://images.unsplash.com/photo-1553621042-f6e147245754?w=400&h=260&fit=crop&q=80",
+      "Afuri Ramen": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=260&fit=crop&q=80",
+      "Organic House Salus": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=260&fit=crop&q=80",
+      "Vegetarian sushi counters": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=400&h=260&fit=crop&q=80",
+      "T's Tantan (Tokyo Station)": "https://images.unsplash.com/photo-1557872943-16a5ac26437e?w=400&h=260&fit=crop&q=80",
+      "Ain Soph Journey": "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&h=260&fit=crop&q=80",
+    },
     phrases: [
       { en: "Hello", local: "こんにちは", phonetic: "Konnichiwa" },
       { en: "Thank you", local: "ありがとう", phonetic: "Arigatō" },
@@ -43,6 +52,15 @@ const destinationsDb = {
     country: "France",
     language: "French",
     veganHard: false,
+    heroImage: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&h=500&fit=crop&q=80",
+    cuisineImages: {
+      "Marché des Enfants Rouges": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=260&fit=crop&q=80",
+      "Latin Quarter bistro": "https://images.unsplash.com/photo-1550507992-eb63ffee0847?w=400&h=260&fit=crop&q=80",
+      "Le Grenier de Notre-Dame": "https://images.unsplash.com/photo-1543339308-d595c4f5f5ab?w=400&h=260&fit=crop&q=80",
+      "L'As du Fallafel": "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=400&h=260&fit=crop&q=80",
+      "Le Potager du Marais": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=260&fit=crop&q=80",
+      "Gentle Gourmet": "https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=400&h=260&fit=crop&q=80",
+    },
     phrases: [
       { en: "Hello", local: "Bonjour", phonetic: "Bohn-zhoor" },
       { en: "Thank you", local: "Merci", phonetic: "Mehr-see" },
@@ -75,6 +93,15 @@ const destinationsDb = {
     country: "United States",
     language: "English",
     veganHard: false,
+    heroImage: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=1200&h=500&fit=crop&q=80",
+    cuisineImages: {
+      "Katz's Delicatessen": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=260&fit=crop&q=80",
+      "Chelsea Market": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=260&fit=crop&q=80",
+      "Dirt Candy": "https://images.unsplash.com/photo-1540914124281-342587941389?w=400&h=260&fit=crop&q=80",
+      "Divya's Kitchen": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=260&fit=crop&q=80",
+      "Blossom": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=260&fit=crop&q=80",
+      "By Chloe": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=260&fit=crop&q=80",
+    },
     phrases: [
       { en: "Hello", local: "Hello", phonetic: "Standard" },
       { en: "Which train to ___?", local: "Which train do I take?", phonetic: "MTA apps help too." },
@@ -284,14 +311,25 @@ function buildDays(data, days, label) {
 }
 
 function renderItinerary() {
+  const heroBanner = document.getElementById("hero-banner");
   if (!appState.trip) {
     $.itinSub.textContent = "Set a destination on the Dashboard first.";
     $.timeline.innerHTML = '<p class="empty-state">No active trip — plan one from the Dashboard.</p>';
+    if (heroBanner) heroBanner.classList.add("hidden");
     return;
   }
   const { destination, duration } = appState.trip;
   const { data } = getDestData(destination);
   $.itinSub.textContent = `${duration}-day trail through ${destination}`;
+
+  /* Hero banner */
+  if (heroBanner && data.heroImage) {
+    heroBanner.classList.remove("hidden");
+    heroBanner.innerHTML = `<div class="hero-banner-inner"><img src="${data.heroImage}" alt="${esc(destination)} skyline" class="hero-img" /><div class="hero-overlay"><span class="hero-badge">${esc(data.country)}</span><h2 class="hero-title">${esc(destination)}</h2><p class="hero-duration">${duration}-day adventure</p></div></div>`;
+  } else if (heroBanner) {
+    heroBanner.classList.add("hidden");
+  }
+
   $.timeline.innerHTML = buildDays(data, duration, destination);
 }
 
@@ -322,8 +360,13 @@ function renderEater() {
     extra = `<article class="card sos-card"><h2>Vegan traveler note</h2><p>${esc(destination)} can be challenging for vegans — fish stock (dashi) hides in many dishes. Show the SOS card above and ask about broth ingredients.</p></article>`;
   }
 
+  const imgMap = data.cuisineImages || {};
   $.foodGrid.innerHTML = extra + (items.length
-    ? items.map((c) => `<article class="culinary-card"><header class="culinary-card-header"><h3>${esc(c.name)}</h3></header><div class="culinary-card-body"><p>${esc(c.desc)}</p></div></article>`).join("")
+    ? items.map((c) => {
+        const img = imgMap[c.name];
+        const imgHtml = img ? `<div class="culinary-card-img"><img src="${img}" alt="${esc(c.name)}" loading="lazy" /></div>` : '';
+        return `<article class="culinary-card${img ? ' has-image' : ''}"> ${imgHtml}<header class="culinary-card-header"><h3>${esc(c.name)}</h3></header><div class="culinary-card-body"><p>${esc(c.desc)}</p></div></article>`;
+      }).join("")
     : '<p class="empty-state">No matches — try updating your profile diet.</p>');
 }
 

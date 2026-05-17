@@ -612,6 +612,111 @@ button, input, select, textarea {
   color: var(--color-primary);
 }
 
+/* Hero destination banner */
+.hero-banner {
+  margin-bottom: var(--space-xl);
+}
+
+.hero-banner-inner {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 2px 12px var(--color-shadow-hover);
+}
+
+.hero-img {
+  display: block;
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  filter: saturate(0.85) brightness(0.92);
+  transition: filter 0.4s ease, transform 0.6s ease;
+}
+
+.hero-banner-inner:hover .hero-img {
+  filter: saturate(0.95) brightness(0.95);
+  transform: scale(1.02);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-xl);
+  background: linear-gradient(
+    to top,
+    rgba(15, 76, 92, 0.72) 0%,
+    rgba(15, 76, 92, 0.25) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.hero-badge {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+  background: rgba(0, 0, 0, 0.25);
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-xs);
+  width: fit-content;
+  backdrop-filter: blur(4px);
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 var(--space-xs);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-duration {
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Culinary card images */
+.culinary-card-img {
+  position: relative;
+  overflow: hidden;
+}
+
+.culinary-card-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 60%,
+    rgba(248, 246, 241, 0.15) 100%
+  );
+  pointer-events: none;
+}
+
+.culinary-card-img img {
+  display: block;
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  filter: saturate(0.82) brightness(0.96);
+  transition: filter 0.35s ease, transform 0.5s ease;
+}
+
+.culinary-card.has-image:hover .culinary-card-img img {
+  filter: saturate(0.92) brightness(1);
+  transform: scale(1.04);
+}
+
 /* Timeline */
 .timeline {
   position: relative;
@@ -1022,6 +1127,18 @@ button, input, select, textarea {
 
   .main-content {
     padding: var(--space-lg) var(--space-md);
+  }
+
+  .hero-img {
+    height: 200px;
+  }
+
+  .hero-overlay {
+    padding: var(--space-md);
+  }
+
+  .hero-title {
+    font-size: 1.25rem;
   }
 
   .landing {
