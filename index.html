@@ -7,6 +7,9 @@
   <meta name="description"
     content="Wandernest — A home for wanderers. Plan trips, eat consciously, and speak like a local." />
   <title>Wandernest — A home for wanderers</title>
+  <!-- Favicon: mountain + nest SVG inline as data URI -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f4c5c'/%3E%3Cpolygon points='8,52 24,24 32,36 40,22 56,52' fill='none' stroke='%23ff7f50' stroke-width='3.5' stroke-linejoin='round'/%3E%3Ccircle cx='40' cy='22' r='5' fill='%23ff7f50'/%3E%3Cpath d='M27,44 Q32,38 37,44' fill='none' stroke='%23f8f6f1' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <link rel="icon" type="image/png" sizes="32x32" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f4c5c'/%3E%3Cpolygon points='8,52 24,24 32,36 40,22 56,52' fill='none' stroke='%23ff7f50' stroke-width='3.5' stroke-linejoin='round'/%3E%3Ccircle cx='40' cy='22' r='5' fill='%23ff7f50'/%3E%3Cpath d='M27,44 Q32,38 37,44' fill='none' stroke='%23f8f6f1' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -18,12 +21,6 @@
 <body>
   <!-- Landing -->
   <section id="landing" class="landing view-active">
-    <header class="landing-header">
-      <button type="button" id="theme-toggle-landing" class="icon-btn theme-toggle" aria-label="Toggle dark mode">
-        <span class="theme-icon sun" aria-hidden="true">☀</span>
-        <span class="theme-icon moon" aria-hidden="true">☾</span>
-      </button>
-    </header>
     <div class="landing-hero">
       <p class="eyebrow">A home for wanderers</p>
       <h1 class="brand-title">Wandernest</h1>
@@ -61,34 +58,32 @@
           <small id="sidebar-greeting">Explorer</small>
         </div>
       </div>
-      <nav class="nav-tabs" role="tablist">
-        <button type="button" class="nav-tab active" data-tab="dashboard" role="tab" aria-selected="true"
-          aria-controls="panel-dashboard">
-          <span class="nav-icon" aria-hidden="true">◎</span> Dashboard
-        </button>
-        <button type="button" class="nav-tab" data-tab="itinerary" role="tab" aria-selected="false"
-          aria-controls="panel-itinerary">
-          <span class="nav-icon" aria-hidden="true">◇</span> Live Itinerary
-        </button>
-        <button type="button" class="nav-tab" data-tab="eater" role="tab" aria-selected="false"
-          aria-controls="panel-eater">
-          <span class="nav-icon" aria-hidden="true">◈</span> Conscious Eater
-        </button>
-        <button type="button" class="nav-tab" data-tab="lingo" role="tab" aria-selected="false"
-          aria-controls="panel-lingo">
-          <span class="nav-icon" aria-hidden="true">◉</span> Lingo Nest
-        </button>
-        <button type="button" class="nav-tab" data-tab="profile" role="tab" aria-selected="false"
-          aria-controls="panel-profile">
-          <span class="nav-icon" aria-hidden="true">◐</span> My Nest
-        </button>
-      </nav>
-      <div class="navbar-actions">
-        <button type="button" id="theme-toggle-app" class="icon-btn theme-toggle" aria-label="Toggle dark mode">
-          <span class="theme-icon sun" aria-hidden="true">☀</span>
-          <span class="theme-icon moon" aria-hidden="true">☾</span>
-        </button>
-        <button type="button" id="logout-btn" class="btn btn-ghost btn-sm">Sign out</button>
+      <div class="navbar-right">
+        <nav class="nav-tabs" role="tablist">
+          <button type="button" class="nav-tab active" data-tab="dashboard" role="tab" aria-selected="true"
+            aria-controls="panel-dashboard">
+            <span class="nav-icon" aria-hidden="true">◎</span> Dashboard
+          </button>
+          <button type="button" class="nav-tab" data-tab="itinerary" role="tab" aria-selected="false"
+            aria-controls="panel-itinerary">
+            <span class="nav-icon" aria-hidden="true">◇</span> Live Itinerary
+          </button>
+          <button type="button" class="nav-tab" data-tab="eater" role="tab" aria-selected="false"
+            aria-controls="panel-eater">
+            <span class="nav-icon" aria-hidden="true">◈</span> Conscious Eater
+          </button>
+          <button type="button" class="nav-tab" data-tab="lingo" role="tab" aria-selected="false"
+            aria-controls="panel-lingo">
+            <span class="nav-icon" aria-hidden="true">◉</span> Lingo Nest
+          </button>
+          <button type="button" class="nav-tab" data-tab="profile" role="tab" aria-selected="false"
+            aria-controls="panel-profile">
+            <span class="nav-icon" aria-hidden="true">◐</span> My Nest
+          </button>
+        </nav>
+        <div class="navbar-actions">
+          <button type="button" id="logout-btn" class="btn btn-ghost btn-sm">Sign out</button>
+        </div>
       </div>
     </header>
 
